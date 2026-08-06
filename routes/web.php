@@ -130,4 +130,5 @@ Route::get('/starter-page', function () {
     return view('web.pages.starter.starter');
 });
 
-//* start end
+
+//* start end hare
