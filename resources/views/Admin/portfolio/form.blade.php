@@ -34,7 +34,7 @@
                                 $value = old($field, is_array($item->{$field}) ? implode(PHP_EOL, $item->{$field}) : $item->{$field});
                                 $label = ucwords(str_replace('_', ' ', $field));
                             @endphp
-                            <div class="{{ in_array($field, ['about_summary', 'about_description', 'skills_intro', 'resume_intro', 'portfolio_intro', 'contact_intro', 'map_embed_url', 'description', 'bullets'], true) ? 'col-md-12' : 'col-md-6' }} mb-3">
+                            <div class="{{ in_array($field, ['about_summary', 'about_description', 'about_extra_description', 'skills_intro', 'resume_intro', 'portfolio_intro', 'contact_intro', 'map_embed_url', 'description', 'bullets'], true) ? 'col-md-12' : 'col-md-6' }} mb-3">
                                 @if ($field === 'portfolio_profile_id')
                                     <label>{{ $label }}</label>
                                     <select name="{{ $field }}" class="form-control">
@@ -74,7 +74,7 @@
                                     <label>{{ $label }}</label>
                                     <input type="date" name="{{ $field }}" class="form-control"
                                         value="{{ optional($item->{$field})->format('Y-m-d') ?: $value }}">
-                                @elseif (in_array($field, ['about_summary', 'about_description', 'skills_intro', 'resume_intro', 'portfolio_intro', 'contact_intro', 'map_embed_url', 'description', 'bullets', 'message'], true))
+                                @elseif (in_array($field, ['about_summary', 'about_description', 'about_extra_description', 'skills_intro', 'resume_intro', 'portfolio_intro', 'contact_intro', 'map_embed_url', 'description', 'bullets', 'message'], true))
                                     <label>{{ $label }}</label>
                                     <textarea name="{{ $field }}" class="form-control" rows="4">{{ $value }}</textarea>
                                 @else

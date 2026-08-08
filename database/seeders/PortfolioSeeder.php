@@ -27,18 +27,20 @@ class PortfolioSeeder extends Seeder
                 'typed_items' => 'Full Stack Web Developer, Software Tester, Laravel Developer',
                 'profile_image' => 'img/my-profile-img1 (1).png',
                 'hero_image' => 'img/home/home1 (1).jpg',
-                'about_summary' => "Hey there, Name's Shahid Raza and I'm a Full Stack Web Developer,worked @TrakAff as a laravel developer intern.",
-                'about_description' => 'I have completed nearly 9 projects that have helped me become a skilled professional in web development and software testing.',
+                'about_image' => 'img/my-profile-img (3).png',
+                'about_summary' => "Hey there, Name's Shahid Raza and I'm a Full Stack Web Developer,worked @TrakAff as a laravel backend web developer and currently working as laravel backend web developer @Capitall. I'm proficient in working with and implementing backend for web apps using Php, Laravel, Mysql, Ajax, Json, JavaScript, React Js, Node Js, React Native, HTML, CSS, jQuery, Bootstrap. And I enjoy taking on new challenges.I have 2 year of experience in Backend Web Development.",
+                'about_description' => 'I am currently expanding my skills in React Native and have recently developed an app called FriendsList. This project has allowed me to explore the fundamentals of mobile app development.',
+                'about_extra_description' => 'I have completed nearly 9 projects that have helped me become a skilled professional in Backend web development.',
                 'birthday' => '2001-01-01',
-                'website' => 'www.shahidraza.com',
+                'website' => 'shahid1.infinityfreeapp.com',
                 'phone' => '+917488952139',
-                'city' => 'Sursand, Bihar',
+                'city' => 'Sursand, Sitamarhi, India',
                 'age' => 23,
                 'degree' => 'Master',
-                'freelance' => 'Available',
-                'skills_intro' => 'Basic knowledge in Php, Laravel, Mysql, Ajax, Json, JavaScript, React Js, Node Js, React Native, HTML, CSS, Bootstrap, jQuery, Git and C Programming.',
-                'resume_intro' => 'Passionate and experienced Backend Web Developer with a solid foundation in full-stack development. Skilled in a variety of technologies, from PHP and Laravel to React and Node.js, I am driven to build innovative web solutions that meet and exceed client expectations.',
-                'portfolio_intro' => "Welcome to my portfolio. Here you'll find a collection of projects that highlight my expertise in software development and web technologies.",
+                'freelance' => 'Not Available',
+                'skills_intro' => 'Basic knowledge in Php, Laravel, Mysql, Ajax, Json, JavaScript, React Js, Node Js, React Native, HTML, CSS, jQuery, Bootstrap, GitHub, C Programming, MS Power Point, MS Word, MS Excel, Touch Typing.',
+                'resume_intro' => 'Passionate and experienced Backend Web Developer with a solid foundation in full-stack development. Skilled in a variety of technologies, from PHP and Laravel to React and Node.js, I am driven to build innovative web solutions that meet and exceed client expectations. My journey in web development has been marked by a commitment to continuous learning and adapting to the latest industry trends. Below is a summary of my professional experience, education, skills, and certifications.',
+                'portfolio_intro' => "Welcome to my portfolio. Here you'll find a collection of projects that highlight my expertise in software development and web technologies. Each project demonstrates my dedication to creating effective solutions and my passion for coding.",
                 'contact_intro' => 'Below is my contact information. Feel free to reach out to me anytime!',
                 'map_embed_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.974898484312!2d77.27280758321282!3d28.630514405676287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfcad2277af7d%3A0xe68dd5cbcfe7d692!2sLaxmi%20Nagar%20Metro%20Station!5e0!3m2!1sen!2sus!4v1725388219908!5m2!1sen!2sus',
             ]
@@ -57,11 +59,17 @@ class PortfolioSeeder extends Seeder
             );
         }
 
-        foreach ([
-            ['PHP', 80], ['Laravel', 80], ['MySQL', 90], ['AJAX', 80], ['JSON', 70],
-            ['JavaScript', 60], ['React Js', 70], ['Node Js', 80], ['React Native', 90],
-            ['HTML', 80], ['CSS', 90], ['Bootstrap', 90], ['jQuery', 60],
-        ] as $index => [$name, $percentage]) {
+        $skills = [
+            ['PHP', 80], ['Mysql', 80], ['Json', 90], ['jQuery', 80], ['CSS', 70],
+            ['React Js', 60], ['React Native', 70], ['Laravel', 80], ['Ajax', 90],
+            ['Javascript', 80], ['HTML', 90], ['Bootstrap', 90], ['Node js', 60],
+        ];
+
+        Skill::where('portfolio_profile_id', $profile->id)
+            ->whereNotIn('name', collect($skills)->pluck(0)->all())
+            ->update(['is_active' => false]);
+
+        foreach ($skills as $index => [$name, $percentage]) {
             Skill::updateOrCreate(
                 ['portfolio_profile_id' => $profile->id, 'name' => $name],
                 ['percentage' => $percentage, 'sort_order' => $index + 1, 'is_active' => true]
@@ -74,7 +82,7 @@ class PortfolioSeeder extends Seeder
         );
         ResumeItem::updateOrCreate(
             ['resume_section_id' => $objective->id, 'title' => 'Experienced Backend Web Developer'],
-            ['description' => 'Experienced Backend Web Developer with a passion for developing innovative web applications. Skilled in full-stack development, including front-end and back-end technologies.', 'sort_order' => 1, 'is_active' => true]
+            ['description' => 'Experienced Backend Web Developer with a passion for developing innovative web applications.Skilled in full-stack development,including front-end and back-end technologies.Seeking to use my skills and experience to contribute to a dynamic web development team', 'sort_order' => 1, 'is_active' => true]
         );
 
         $education = ResumeSection::updateOrCreate(

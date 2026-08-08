@@ -26,7 +26,7 @@ class PortfolioContentController extends Controller
         'settings' => [
             'title' => 'Portfolio Settings',
             'model' => PortfolioProfile::class,
-            'fields' => ['name', 'title', 'typed_items', 'profile_image', 'hero_image', 'about_summary', 'about_description', 'birthday', 'website', 'phone', 'city', 'age', 'degree', 'email', 'freelance', 'skills_intro', 'resume_intro', 'portfolio_intro', 'contact_intro', 'map_embed_url'],
+            'fields' => ['name', 'title', 'typed_items', 'profile_image', 'hero_image', 'about_image', 'about_summary', 'about_description', 'about_extra_description', 'birthday', 'website', 'phone', 'city', 'age', 'degree', 'email', 'freelance', 'skills_intro', 'resume_intro', 'portfolio_intro', 'contact_intro', 'map_embed_url'],
             'rules' => ['name' => 'required|string|max:255', 'title' => 'required|string|max:255', 'email' => 'nullable|email'],
         ],
         'social-links' => [

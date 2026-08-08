@@ -10,10 +10,8 @@
 <main class="main">
     <style>
         .responsive-image {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
+            height: 400px;
+            width: 280px;
         }
 
         .portfolio-image-container {
@@ -21,16 +19,13 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            align-items: center;
-            overflow: hidden;
         }
 
-        .borderstyle {
-            border: 1px solid transparent;
-            border-image: linear-gradient(to right, #0c121e, #698cbf) 1;
-        }
+        @media (max-width: 759px) {
+            .hello {
+                width: 33rem;
+            }
 
-        @media (min-width: 768px) {
             .portfolio-image-container {
                 height: 446px;
             }
@@ -41,7 +36,11 @@
             }
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 576px) {
+            .hello {
+                width: 35rem;
+            }
+
             .portfolio-image-container {
                 height: 446px;
             }
@@ -71,7 +70,7 @@
         <div class="container" data-aos="fade-up" data-aos-delay="100">
             <div class="row gy-4 justify-content-center">
                 <div class="col-lg-4">
-                    <img src="{{ asset($profile->profile_image ?? 'img/my-profile-img (3).png') }}" class="img-fluid"
+                    <img src="{{ asset($profile->about_image ?? 'img/my-profile-img (3).png') }}" class="img-fluid"
                         alt="">
                 </div>
                 <div class="col-lg-8 content">
@@ -80,7 +79,7 @@
                         {{ $profile->about_description ?? 'I have completed nearly 9 projects that have helped me become a skilled professional in web development and software testing.' }}
                     </p>
                     <p>
-                        {{ $profile->about_description2 ?? 'I have completed nearly 9 projects that have helped me become a skilled professional in web development and software testing.' }}
+                        {{ $profile->about_extra_description ?? 'I have completed nearly 9 projects that have helped me become a skilled professional in Backend web development.' }}
                     </p>
                     <div class="row">
                         <div class="col-lg-6">
@@ -148,16 +147,19 @@
         </div>
         <div class="container" data-aos="fade-up" data-aos-delay="100">
             <div class="row skills-content skills-animation">
-                @foreach ($profile->skills ?? collect() as $skill)
+                @foreach (($profile->skills ?? collect())->values()->chunk(7) as $skillColumn)
                     <div class="col-lg-6">
-                        <div class="progress">
-                            <span class="skill"><span>{{ $skill->name }}</span> <i
-                                    class="val">{{ $skill->percentage }}%</i></span>
-                            <div class="progress-bar-wrap">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="{{ $skill->percentage }}"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
+                        @foreach ($skillColumn as $skill)
+                            <div class="progress">
+                                <span class="skill"><span>{{ $skill->name }}</span> <i
+                                        class="val">{{ $skill->percentage }}%</i></span>
+                                <div class="progress-bar-wrap">
+                                    <div class="progress-bar" role="progressbar"
+                                        aria-valuenow="{{ $skill->percentage }}" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 @endforeach
             </div>
@@ -177,7 +179,9 @@
                             <h3 class="resume-title">{{ $section->name }}</h3>
                             @foreach ($section->items as $item)
                                 <div class="resume-item {{ $loop->last ? 'pb-0' : '' }}">
-                                    <h4>{{ $item->title }}</h4>
+                                    @if ($section->name !== 'Objective' && $item->title !== 'Certificates')
+                                        <h4>{{ $item->title }}</h4>
+                                    @endif
                                     @if ($item->period)
                                         <h5>{{ $item->period }}</h5>
                                     @endif
@@ -254,6 +258,12 @@
                     <hr />
 
                     <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+                        <style>
+                            .borderstyle {
+                                border: 1px solid transparent;
+                                border-image: linear-gradient(to right, #0c121e, #698cbf) 1;
+                            }
+                        </style>
                         @foreach ($androidPortfolioItems as $item)
                             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product hello">
                                 <div class="portfolio-content h-100">
