@@ -1,11 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\BlogsController;
 use App\Http\Controllers\Admin\Portfolio\ContactMessageController;
 use App\Http\Controllers\Admin\Portfolio\PortfolioContentController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Web\BlogsViewWebController;
-use App\Http\Controllers\Web\BlogsWebController;
 use App\Http\Controllers\Web\ContactUsWebController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\PortfolioDetailController;
@@ -14,7 +11,6 @@ use Illuminate\Support\Facades\Route;
 
 //* admin panel
 Route::prefix('admin')->middleware(['auth', 'verified', 'throttle:only_three_time'])->group(function () {
-    Route::resource('blog', BlogsController::class);
     Route::get('portfolio/{resource}', [PortfolioContentController::class, 'index'])->name('admin.portfolio.index');
     Route::get('portfolio/{resource}/create', [PortfolioContentController::class, 'create'])->name('admin.portfolio.create');
     Route::post('portfolio/{resource}', [PortfolioContentController::class, 'store'])->name('admin.portfolio.store');
@@ -24,10 +20,6 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'throttle:only_three_tim
     Route::delete('portfolio/{resource}/{id}', [PortfolioContentController::class, 'destroy'])->name('admin.portfolio.destroy');
     Route::resource('contact-messages', ContactMessageController::class)->only(['index', 'show', 'destroy'])->names('admin.contact-messages');
 });
-
-// Web
-// Route::get('/', [BlogsWebController::class, 'index']);
-Route::get('blogsview/{slug}', [BlogsViewWebController::class, 'index']);
 
 //*login routes start
 Route::prefix('admin')->group(function () {

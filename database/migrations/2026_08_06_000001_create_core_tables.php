@@ -41,17 +41,6 @@ return new class extends Migration
             });
         }
 
-        if (! Schema::hasTable('blogs')) {
-            Schema::create('blogs', function (Blueprint $table) {
-                $table->id();
-                $table->string('title');
-                $table->text('description');
-                $table->text('preview_image');
-                $table->string('slug')->unique();
-                $table->timestamps();
-            });
-        }
-
         if (! Schema::hasTable('contactus')) {
             Schema::create('contactus', function (Blueprint $table) {
                 $table->id();
@@ -68,7 +57,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('contactus');
-        Schema::dropIfExists('blogs');
         Schema::dropIfExists('personal_access_tokens');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('users');
