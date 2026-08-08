@@ -32,7 +32,14 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     @foreach (array_slice($config['fields'], 0, 4) as $field)
-                                        <td>{{ is_array($item->{$field}) ? implode(', ', $item->{$field}) : Str::limit((string) $item->{$field}, 80) }}</td>
+                                        @if (in_array($resource, ['settings', 'portfolio-items', 'portfolio-detail-images'], true) && in_array($field, ['profile_image', 'image'], true) && $item->{$field})
+                                            <td class="text-center">
+                                                <img src="{{ asset($item->{$field}) }}" alt="Preview Image"
+                                                    style="max-width: 50px; max-height: 25px;">
+                                            </td>
+                                        @else
+                                            <td>{{ is_array($item->{$field}) ? implode(', ', $item->{$field}) : Str::limit((string) $item->{$field}, 80) }}</td>
+                                        @endif
                                     @endforeach
                                     <td>
                                         <div class="d-flex">
