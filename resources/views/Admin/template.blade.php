@@ -145,6 +145,8 @@
                                     'resume-items' => 'Resume Items',
                                     'portfolio-categories' => 'Portfolio Categories',
                                     'portfolio-items' => 'Portfolio Items',
+                                    'portfolio-details' => 'Portfolio Details',
+                                    'portfolio-detail-images' => 'Portfolio Detail Images',
                                     'contact-infos' => 'Contact Info',
                                     'stats' => 'Stats',
                                     'services' => 'Services',

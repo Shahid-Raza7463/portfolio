@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\BlogsViewWebController;
 use App\Http\Controllers\Web\BlogsWebController;
 use App\Http\Controllers\Web\ContactUsWebController;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\PortfolioDetailController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -55,53 +56,10 @@ Route::get('/', [HomeController::class, 'index']);
 
 
 //* All portfolio
-Route::get('/portfolio-details/1', function () {
-    return view('web.pages.portfolio.project1.portfolio');
-});
-Route::get('/portfolio-details/2', function () {
-    return view('web.pages.portfolio.project2.portfolio');
-});
-Route::get('/portfolio-details/3', function () {
-    return view('web.pages.portfolio.project3.portfolio');
-});
-Route::get('/portfolio-details/4', function () {
-    return view('web.pages.portfolio.project4.portfolio');
-});
-Route::get('/portfolio-details/5', function () {
-    return view('web.pages.portfolio.project5.portfolio');
-});
-Route::get('/portfolio-details/6', function () {
-    return view('web.pages.portfolio.project6.portfolio');
-});
-Route::get('/portfolio-details/7', function () {
-    return view('web.pages.portfolio.project7.portfolio');
-});
-Route::get('/portfolio-details/8', function () {
-    return view('web.pages.portfolio.project8.portfolio');
-});
-Route::get('/portfolio-details/9', function () {
-    return view('web.pages.portfolio.project9.portfolio');
-});
-Route::get('/portfolio-details/10', function () {
-    return view('web.pages.portfolio.project10.portfolio');
-});
+Route::get('/portfolio-details/{id}', [PortfolioDetailController::class, 'portfolio'])->whereNumber('id');
 
 //? All android portfolio start hare 
-Route::get('/android-app/5', function () {
-    return view('web.pages.portfolio.androidapp5.androidapp');
-});
-Route::get('/android-app/4', function () {
-    return view('web.pages.portfolio.androidapp4.androidapp');
-});
-Route::get('/android-app/3', function () {
-    return view('web.pages.portfolio.androidapp3.androidapp');
-});
-Route::get('/android-app/2', function () {
-    return view('web.pages.portfolio.androidapp2.androidapp');
-});
-Route::get('/android-app/1', function () {
-    return view('web.pages.portfolio.androidapp1.androidapp');
-});
+Route::get('/android-app/{id}', [PortfolioDetailController::class, 'android'])->whereNumber('id');
 
 //* All portfolio end hare 
 

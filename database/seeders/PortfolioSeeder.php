@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Portfolio\ContactInfo;
 use App\Models\Portfolio\PortfolioCategory;
+use App\Models\Portfolio\PortfolioDetail;
+use App\Models\Portfolio\PortfolioDetailImage;
 use App\Models\Portfolio\PortfolioItem;
 use App\Models\Portfolio\PortfolioProfile;
 use App\Models\Portfolio\PortfolioStat;
@@ -164,6 +166,8 @@ class PortfolioSeeder extends Seeder
             );
         }
 
+        $this->seedPortfolioDetails();
+
         foreach ([
             ['Address', 'Laxmi Nagar Metro Station New Delhi.', 'bi bi-geo-alt', 1],
             ['Call Us', '+917488952139', 'bi bi-telephone', 2],
@@ -213,5 +217,373 @@ class PortfolioSeeder extends Seeder
                 ['designation' => $designation, 'message' => $message, 'image' => $image, 'sort_order' => $index + 1, 'is_active' => false]
             );
         }
+    }
+
+    private function seedPortfolioDetails(): void
+    {
+        $webSliderStyle = 'box-shadow: 0 8px 16px rgba(0,0,0,0.1); border-radius: 10px;';
+        $appSliderStyle = 'box-shadow: 0 8px 16px rgba(0,0,0,0.1); border-radius: 10px; width: 302px;';
+        $infoStyle = 'background-color: #fff; padding: 35px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); height: 506px;';
+        $appImageStyle = 'height: 460px; width: 302px;';
+
+        $featureList = '<ul style="line-height: 1.9; margin-top: 20px; padding-left: 20px;">
+                    <li><strong>Add Network/Program</strong>: Allows users to create new networks.</li>
+                    <li><strong>Networks</strong>: View and manage all listed networks in one place.</li>
+                    <li><strong>Offers</strong>: Lists all available offers related to the networks.</li>
+                    <li><strong>Resources</strong>: Provides resources related to affiliate marketing.</li>
+                    <li><strong>Reviews</strong>: Allows users to give reviews on networks and reply to them.</li>
+                    <li><strong>Blog</strong>: Users can create and browse blogs related to affiliate marketing.</li>
+                </ul>';
+
+        $portfolioAppDescription = '<p>
+                    Welcome to my portfolio App! This is a comprehensive showcase of my professional journey,
+                    skills, and projects.
+                    Through this platform, I aim to provide a clear and organized overview of my work and experiences,
+                    all managed
+                    seamlessly through an intuitive admin dashboard.
+                </p>
+                <ul style="line-height: 1.9; margin-top: 20px; padding-left: 20px;">
+                    <li><strong>Home</strong>: A quick overview of my professional profile.</li>
+                    <li><strong>About</strong>: This section is dedicated to sharing more about me, including my
+                        background,
+                        skills, and what drives my passion for web development.</li>
+                    <li><strong>Resume</strong>: In this section, you can find detailed information about my education,
+                        professional experience, technical skills, and certifications.</li>
+                    <li><strong>Portfolio</strong>: A collection of projects that I have worked on, showcasing my
+                        technical
+                        expertise and ability to deliver innovative solutions. Each project is described in detail with
+                        its key features.</li>
+                    <li><strong>Contact</strong>: This section provides my contact information, including email, phone
+                        number,
+                        and a contact form for inquiries.</li>
+                    <li><strong>Settings</strong>: Options for app personalization.</li>
+                </ul>';
+
+        foreach ([
+            [
+                '/portfolio-details/1',
+                [
+                    'project_title' => 'Shopping Mart',
+                    'category' => 'Web design',
+                    'college' => 'ISM',
+                    'project_date' => '1 Julu, 2022',
+                    'technologies' => 'Php, Mysql, Ajax, Json, JavaScript, HTML, CSS, jQuery, Bootstrap,',
+                    'project_url' => 'https://github.com/Shahid-Raza7463/E-commerce-website-shopping-mart',
+                    'project_url_label' => 'https://shopping.mart.com',
+                    'description_title' => 'Shopping Mart',
+                    'description' => '<p>My second project, Shopping Mart, is an e-commerce website that I developed during my college
+                    years. The platform allows users to browse products, view detailed product information, and
+                    in the future, purchase items. While the payment system is not yet implemented, this feature
+                    is planned for future updates.</p>
+                <p>To build this project, I utilized HTML, CSS, and JavaScript for the frontend, and PHP with
+                    MySQL for the backend. The site includes essential features such as user authentication,
+                    allowing users to sign up, log in, and log out. Additionally, users can submit their
+                    location, which will enable efficient product delivery when the shopping feature is fully
+                    functional.</p>',
+                ],
+                ['img/portfolio/project-sopping (1).jpg', 'img/portfolio/project-sopping (4).png', 'img/portfolio/project-sopping (5).png', 'img/portfolio/project-sopping (6).png', 'img/portfolio/project-sopping (1).png', 'img/portfolio/project-sopping (2).png', 'img/portfolio/project-sopping (3).png', 'img/portfolio/project-sopping (7).png', 'img/portfolio/project-sopping (8).png'],
+            ],
+            [
+                '/portfolio-details/2',
+                [
+                    'project_title' => 'Analog Digital Clock',
+                    'category' => 'Web design',
+                    'college' => 'ISM',
+                    'project_date' => '01 September, 2022',
+                    'technologies' => 'JavaScript, HTML, CSS, jQuery, Bootstrap,',
+                    'project_url' => 'https://shahid-raza7463.github.io/Analog-Digital-Clock/',
+                    'project_url_label' => 'https://analog.digital.clock.com',
+                    'description_title' => 'Analog Digital Clock',
+                    'description' => '<p>The clock is designed to display the current time in both analog and digital formats. This project was created using JavaScript, HTML, CSS, jQuery, and Bootstrap.</p>',
+                ],
+                ['img/portfolio/project-1 (6).png', 'img/portfolio/project-1 (61).png'],
+            ],
+            [
+                '/portfolio-details/3',
+                [
+                    'project_title' => 'Google Drive Clone',
+                    'category' => 'Web design',
+                    'college' => 'ISM',
+                    'project_date' => '01 October, 2022',
+                    'technologies' => 'JavaScript, HTML, CSS, jQuery, Bootstrap,',
+                    'project_url' => 'https://shahid-raza7463.github.io/google_drive_colne/',
+                    'project_url_label' => 'https://google.drive.clone.com',
+                    'description_title' => 'Google Drive Clone',
+                    'description' => '<p>This project is similar to Google Drive and demonstrates a clean interface for managing uploaded files and folders using frontend web technologies.</p>',
+                ],
+                ['img/portfolio/project-1 (7).png', 'img/portfolio/project-1 (71).png'],
+            ],
+            [
+                '/portfolio-details/4',
+                [
+                    'project_title' => 'E-commerce site',
+                    'category' => 'Web design',
+                    'college' => 'ISM',
+                    'project_date' => '01 October, 2022',
+                    'technologies' => 'JavaScript, HTML, CSS, jQuery, Bootstrap,',
+                    'description_title' => 'E-commerce site',
+                    'description' => '<p>This project showcases my ability to build dynamic E-commerce site layouts with product-focused sections and responsive pages.</p>' . $featureList,
+                ],
+                ['img/portfolio/project-1 (8).png', 'img/portfolio/project-1 (811).png', 'img/portfolio/project-1 (4).jpg'],
+            ],
+            [
+                '/portfolio-details/5',
+                [
+                    'project_title' => 'Online Book Store',
+                    'category' => 'Web design',
+                    'college' => 'ISM',
+                    'project_date' => '01 October, 2022',
+                    'technologies' => 'JavaScript, HTML, CSS, jQuery, Bootstrap,',
+                    'description_title' => 'Online Book Store',
+                    'description' => '<p>An e-commerce platform tailored for purchasing books online. It includes a simple browsing experience and book-focused product presentation.</p>',
+                ],
+                ['img/portfolio/project-book (1).jpg', 'img/portfolio/project-book (2).jpg', 'img/portfolio/project-book (5).jpg', 'img/portfolio/project-book (3).jpg', 'img/portfolio/project-book (4).jpg'],
+            ],
+            [
+                '/portfolio-details/6',
+                [
+                    'project_title' => 'Login System',
+                    'category' => 'Web design',
+                    'college' => 'ISM',
+                    'project_date' => '01 October, 2022',
+                    'technologies' => 'JavaScript, HTML, CSS, jQuery, Bootstrap,',
+                    'description_title' => 'Login System',
+                    'description' => '<p>This project is a robust Login System with core authentication screens and user access flow.</p>' . $featureList,
+                ],
+                ['img/portfolio/project-login (3).jpg', 'img/portfolio/project-login (2).jpg', 'img/portfolio/project-login (1).jpg'],
+            ],
+            [
+                '/portfolio-details/7',
+                [
+                    'project_title' => 'ExpertAff',
+                    'category' => 'Web design',
+                    'company' => 'TrakAff-Affiliate Tracking Software',
+                    'project_date' => '01 October, 2023',
+                    'technologies' => 'Php, Laravel, Mysql, Ajax, Json, JavaScript, HTML, CSS, jQuery, Bootstrap,',
+                    'project_url' => 'https://shahid-raza7463.github.io/ExpertAff-system/',
+                    'project_url_label' => 'www.ExpertAff.com',
+                    'description_title' => 'ExpertAff',
+                    'description' => '<p>
+                    ExpertAff is a platform designed for network listing, where users can create and manage
+                    affiliate networks. It allows users to create networks, leave reviews, and respond to them.
+                    The system includes features like login, signup, and forgot password functionality. The
+                    navbar contains various tabs:
+                </p>' . $featureList . '<p>Additionally, the platform offers the ability to:</p>
+                <ul style="line-height: 1.9; margin-top: 20px; padding-left: 20px;">
+                    <li><strong>Rate Networks</strong>: Users can rate networks to give feedback on their performance and overall experience.</li>
+                    <li><strong>Sponsored Ads</strong>: The platform includes space for sponsored advertisements, allowing for promotional content display.</li>
+                </ul>
+                <p>This project provides a comprehensive platform for managing and interacting with affiliate networks.</p>',
+                ],
+                ['img/portfolio/project-expertaff (1).png', 'img/portfolio/project-expertaff (2).png', 'img/portfolio/project-expertaff (3).png', 'img/portfolio/project-expertaff (4).png', 'img/portfolio/project-expertaff (5).png', 'img/portfolio/project-expertaff (6).png', 'img/portfolio/project-expertaff (7).png', 'img/portfolio/project-expertaff (8).png'],
+            ],
+            [
+                '/portfolio-details/8',
+                [
+                    'project_title' => 'Virtual Data Room',
+                    'category' => 'Web design',
+                    'company' => 'Capitall India Private Limited',
+                    'project_date' => '01 October, 2023',
+                    'technologies' => 'Php, Laravel, Mysql, Ajax, Json, JavaScript, HTML, CSS, jQuery, Bootstrap,',
+                    'project_url' => 'https://vsa.capitall.io/',
+                    'project_url_label' => 'https://vsa.capitall.io',
+                    'description_title' => 'Virtual Data Room',
+                    'description' => '<p>
+                    A virtual data room (VDR) is a secure online repository for storing and sharing confidential
+                    documents. It is used by businesses of all sizes to facilitate mergers and acquisitions (M&A),
+                    fundraising, due diligence, and other transactions.
+                </p>
+                <p>
+                    VDRs offer a number of advantages over traditional physical data rooms. They are more secure, as
+                    they are hosted in the cloud and protected by strong encryption. They are also more convenient, as
+                    users can access them from anywhere with an internet connection. And they are more cost-effective,
+                    as there is no need to rent or build a physical space.
+                </p>
+                <p>
+                    <b style="color: #0040f0;">Note: </b>This project includes role-based functionality, such as Admin,
+                    Manager, Staff, HR, and others.
+                </p>
+                <h4>
+                    A VDR typically works as follows:
+                </h4>
+                <ul style="line-height: 1.9; margin-top: 20px; padding-left: 20px;">
+                    <li>The organisation that wants to share documents creates a VDR account and invites the users who need access.</li>
+                    <li>The users log in to the VDR and upload the documents they want to share.</li>
+                    <li>The documents are stored in a secure, password-protected environment.</li>
+                    <li>The users can view, download, and print the documents as needed.</li>
+                    <li>The organisation can revoke access to the documents at any time.</li>
+                </ul>
+
+                <p><b style="color: #0040f0;">Note: </b>Admin can manage all front-end functionalities through the admin dashboard</p>',
+                ],
+                ['img/portfolio/project-vsaedit.png', 'img/portfolio/project-vsaedit (2).png', 'img/portfolio/project-vsaedit (3).png', 'img/portfolio/project-vsa (4).png', 'img/portfolio/project-vsa (5).png', 'img/portfolio/project-vsa (6).png', 'img/portfolio/project-vsa (7).png', 'img/portfolio/project-vsa (8).png', 'img/portfolio/project-vsa (9).png', 'img/portfolio/project-vsa (10).png', 'img/portfolio/project-vsa (11).png'],
+            ],
+            [
+                '/portfolio-details/9',
+                [
+                    'project_title' => 'Linktester',
+                    'category' => 'Web design',
+                    'company' => 'TrakAff-Affiliate Tracking Software',
+                    'project_date' => '01 October, 2023',
+                    'technologies' => 'Php, Laravel, Mysql, Ajax, Json, JavaScript, HTML, CSS, jQuery, Bootstrap,',
+                    'description_title' => 'Linktester',
+                    'description' => '<p>This project is related to URL tracking and testing, helping users validate tracking links and related affiliate flows.</p>' . $featureList,
+                ],
+                ['img/portfolio/project-linktester (1).png', 'img/portfolio/project-linktester (2).png', 'img/portfolio/project-linktester (3).png', 'img/portfolio/project-linktester (4).png', 'img/portfolio/project-linktester (5).png', 'img/portfolio/project-linktester (6).png', 'img/portfolio/project-linktester (7).png'],
+            ],
+            [
+                '/portfolio-details/10',
+                [
+                    'project_title' => 'Portfolio',
+                    'category' => 'Web Design',
+                    'company' => 'Capitall India Private Limited',
+                    'project_date' => '01 October, 2023',
+                    'technologies' => 'Php, Laravel, Mysql, Ajax, Json, JavaScript, HTML, CSS, jQuery, Bootstrap,',
+                    'project_url' => 'http://shahid1.infinityfreeapp.com',
+                    'project_url_label' => 'http://shahid1.infinityfreeapp.com',
+                    'description_title' => 'Portfolio',
+                    'description' => '<p>
+                    Welcome to my portfolio! This is a comprehensive showcase of my professional journey,
+                    skills, and projects.
+                    Through this platform, I aim to provide a clear and organized overview of my work and experiences,
+                    all managed
+                    seamlessly through an intuitive admin dashboard.
+                </p>
+                <ul style="line-height: 1.9; margin-top: 20px; padding-left: 20px;">
+                    <li><strong>Home</strong>: The homepage provides a brief introduction to me and my professional journey.</li>
+                    <li><strong>About</strong>: This section is dedicated to sharing more about me, including my background, skills, and what drives my passion for web development.</li>
+                    <li><strong>Resume</strong>: In this section, you can find detailed information about my education, professional experience, technical skills, and certifications.</li>
+                    <li><strong>Portfolio</strong>: A collection of projects that I have worked on, showcasing my technical expertise and ability to deliver innovative solutions. Each project is described in detail with its key features.</li>
+                    <li><strong>Contact</strong>: This section provides my contact information, including email, phone number, and a contact form for inquiries. It also includes my location for better accessibility.</li>
+                </ul>',
+                ],
+                ['img/portfolio/project-portfolio (2).png', 'img/portfolio/project-portfolio (4).png', 'img/portfolio/project-portfolio (5).png', 'img/portfolio/project-portfolio (3).png', 'img/portfolio/project-portfolio (1).png'],
+            ],
+            [
+                '/android-app/1',
+                [
+                    'project_title' => 'Calculator App',
+                    'category' => 'Mobile App',
+                    'company' => 'Capitall India Private Limited',
+                    'project_date' => '01 November, 2024',
+                    'technologies' => 'React Native, Apis, Android Studio',
+                    'description_title' => 'Calculator App',
+                    'description' => '<p>A mobile calculator application built in React Native with a clean Android interface.</p>',
+                    'slider_style' => $appSliderStyle,
+                    'image_style' => $appImageStyle,
+                ],
+                ['img/app/calcullater (2).png', 'img/app/calcullater (1).png'],
+            ],
+            [
+                '/android-app/2',
+                [
+                    'project_title' => 'Portfolio',
+                    'category' => 'Mobile App',
+                    'company' => 'Capitall India Private Limited',
+                    'project_date' => '01 November, 2024',
+                    'technologies' => 'React Native, Apis, Android Studio',
+                    'description_title' => 'Portfolio',
+                    'description' => $portfolioAppDescription,
+                    'slider_style' => $appSliderStyle,
+                    'image_style' => $appImageStyle,
+                ],
+                ['img/app/portfolioapp2.png', 'img/app/portfolioapp5.png', 'img/app/portfolioapp3.png', 'img/app/portfolioapp4.png', 'img/app/portfolioapp6.png', 'img/app/portfolioapp1.png'],
+            ],
+            [
+                '/android-app/3',
+                [
+                    'project_title' => 'FriendsList App',
+                    'category' => 'Mobile App',
+                    'company' => 'Capitall India Private Limited',
+                    'project_date' => '01 November, 2024',
+                    'technologies' => 'React Native, Apis, Android Studio',
+                    'description_title' => 'FriendsList App',
+                    'description' => '<p>FriendsList App is a React Native mobile app created to explore app development fundamentals with list-based screens and Android Studio tooling.</p>',
+                    'slider_style' => $appSliderStyle,
+                    'image_style' => $appImageStyle,
+                ],
+                ['img/app/friendslist (4).png', 'img/app/friendslist (3).png', 'img/app/friendslist (2).png', 'img/app/friendslist (5).png'],
+            ],
+            [
+                '/android-app/4',
+                [
+                    'project_title' => 'Portfolio Bottom App',
+                    'category' => 'Mobile App',
+                    'company' => 'Capitall India Private Limited',
+                    'project_date' => '01 November, 2024',
+                    'technologies' => 'React Native, Apis, Android Studio',
+                    'description_title' => 'Portfolio Bottom App',
+                    'description' => $portfolioAppDescription,
+                    'slider_style' => $appSliderStyle,
+                    'image_style' => $appImageStyle,
+                ],
+                ['img/app/portfoliotop1.jpg', 'img/app/portfoliotop2.jpg', 'img/app/portfoliotop3.jpg', 'img/app/portfoliotop4.jpg', 'img/app/portfoliotop5.jpg', 'img/app/portfoliotop6.jpg'],
+            ],
+            [
+                '/android-app/5',
+                [
+                    'project_title' => 'Portfolio Drawer App',
+                    'category' => 'Mobile App',
+                    'company' => 'Capitall India Private Limited',
+                    'project_date' => '01 November, 2024',
+                    'technologies' => 'React Native, Apis, Android Studio',
+                    'description_title' => 'Portfolio Drawer App',
+                    'description' => $portfolioAppDescription,
+                    'slider_style' => $appSliderStyle,
+                    'image_style' => $appImageStyle,
+                ],
+                ['img/app/portfoliodrawer1.jpg', 'img/app/portfoliodrawer2.jpg', 'img/app/portfoliodrawer3.jpg', 'img/app/portfoliodrawer4.jpg', 'img/app/portfoliodrawer5.jpg', 'img/app/portfoliodrawer6.jpg', 'img/app/portfoliodrawer7.jpg'],
+            ],
+        ] as [$url, $data, $images]) {
+            $this->portfolioDetail($url, array_merge([
+                'page_title' => 'Portfolio Details',
+                'breadcrumb_title' => 'Portfolio Details',
+                'slider_style' => $webSliderStyle,
+                'image_style' => null,
+                'info_style' => $infoStyle,
+            ], $data), $images);
+        }
+    }
+
+    private function portfolioDetail(string $detailsUrl, array $data, array $images): void
+    {
+        $portfolioItem = PortfolioItem::where('details_url', $detailsUrl)->first();
+
+        if (! $portfolioItem) {
+            return;
+        }
+
+        $detail = PortfolioDetail::updateOrCreate(
+            ['portfolio_item_id' => $portfolioItem->id],
+            $data
+        );
+
+        PortfolioDetailImage::where('portfolio_detail_id', $detail->id)
+            ->whereNotIn('image', $images)
+            ->delete();
+
+        foreach ($images as $index => $image) {
+            [$width, $height] = $this->imageDimensions($image, $data['image_style'] ? 302 : null, $data['image_style'] ? 460 : null);
+
+            PortfolioDetailImage::updateOrCreate(
+                ['portfolio_detail_id' => $detail->id, 'image' => $image],
+                ['width' => $width, 'height' => $height, 'sort_order' => $index + 1]
+            );
+        }
+    }
+
+    private function imageDimensions(string $image, ?int $fallbackWidth = null, ?int $fallbackHeight = null): array
+    {
+        $path = public_path($image);
+
+        if (is_file($path)) {
+            $size = @getimagesize($path);
+
+            if ($size) {
+                return [$fallbackWidth ?: $size[0], $fallbackHeight ?: $size[1]];
+            }
+        }
+
+        return [$fallbackWidth, $fallbackHeight];
     }
 }

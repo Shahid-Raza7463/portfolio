@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Portfolio;
 use App\Http\Controllers\Controller;
 use App\Models\Portfolio\ContactInfo;
 use App\Models\Portfolio\PortfolioCategory;
+use App\Models\Portfolio\PortfolioDetail;
+use App\Models\Portfolio\PortfolioDetailImage;
 use App\Models\Portfolio\PortfolioItem;
 use App\Models\Portfolio\PortfolioProfile;
 use App\Models\Portfolio\PortfolioStat;
@@ -64,6 +66,18 @@ class PortfolioContentController extends Controller
             'model' => PortfolioItem::class,
             'fields' => ['portfolio_category_id', 'title', 'description', 'image', 'details_url', 'is_mobile', 'sort_order', 'is_active'],
             'rules' => ['portfolio_category_id' => 'nullable|exists:portfolio_categories,id', 'title' => 'required|string|max:255'],
+        ],
+        'portfolio-details' => [
+            'title' => 'Portfolio Details',
+            'model' => PortfolioDetail::class,
+            'fields' => ['portfolio_item_id', 'page_title', 'breadcrumb_title', 'project_title', 'category', 'client', 'company', 'college', 'project_date', 'technologies', 'project_url', 'project_url_label', 'slider_style', 'image_style', 'info_style', 'description_title', 'description'],
+            'rules' => ['portfolio_item_id' => 'required|exists:portfolio_items,id', 'project_title' => 'required|string|max:255'],
+        ],
+        'portfolio-detail-images' => [
+            'title' => 'Portfolio Detail Images',
+            'model' => PortfolioDetailImage::class,
+            'fields' => ['portfolio_detail_id', 'image', 'width', 'height', 'sort_order'],
+            'rules' => ['portfolio_detail_id' => 'required|exists:portfolio_details,id', 'image' => 'required|string|max:255'],
         ],
         'contact-infos' => [
             'title' => 'Contact Info',
@@ -196,6 +210,8 @@ class PortfolioContentController extends Controller
             'profiles' => PortfolioProfile::orderBy('name')->pluck('name', 'id'),
             'resumeSections' => ResumeSection::orderBy('sort_order')->pluck('name', 'id'),
             'portfolioCategories' => PortfolioCategory::orderBy('sort_order')->pluck('name', 'id'),
+            'portfolioItems' => PortfolioItem::orderBy('sort_order')->pluck('title', 'id'),
+            'portfolioDetails' => PortfolioDetail::orderBy('project_title')->pluck('project_title', 'id'),
         ];
     }
 }
