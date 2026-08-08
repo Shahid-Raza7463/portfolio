@@ -52,6 +52,11 @@
 </head>
 
 <body class=" hold-transition sidebar-mini layout-navbar-fixed">
+    @php
+        $blogMenuOpen = request()->is('admin/blog*');
+        $portfolioMenuOpen = request()->is('admin/portfolio*') || request()->is('admin/contact-messages*');
+        $currentPortfolioResource = request()->route('resource');
+    @endphp
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
@@ -98,8 +103,8 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         {{-- Blogs --}}
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item {{ $blogMenuOpen ? 'menu-open' : '' }}">
+                            <a href="#" class="nav-link {{ $blogMenuOpen ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-pencil-alt"></i>
                                 <p>
                                     Blogs
@@ -108,21 +113,23 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ url('/') }}/admin/blog" class="nav-link">
+                                    <a href="{{ url('/') }}/admin/blog"
+                                        class="nav-link {{ request()->routeIs('blog.index') || request()->routeIs('blog.show') || request()->routeIs('blog.edit') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Show Blogs</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/') }}/admin/blog/create" class="nav-link">
+                                    <a href="{{ url('/') }}/admin/blog/create"
+                                        class="nav-link {{ request()->routeIs('blog.create') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Create Blogs</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item {{ $portfolioMenuOpen ? 'menu-open' : '' }}">
+                            <a href="#" class="nav-link {{ $portfolioMenuOpen ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-layer-group"></i>
                                 <p>
                                     Portfolio CMS
@@ -144,14 +151,16 @@
                                     'testimonials' => 'Testimonials',
                                 ] as $resource => $label)
                                     <li class="nav-item">
-                                        <a href="{{ route('admin.portfolio.index', $resource) }}" class="nav-link">
+                                        <a href="{{ route('admin.portfolio.index', $resource) }}"
+                                            class="nav-link {{ request()->routeIs('admin.portfolio.*') && $currentPortfolioResource === $resource ? 'active' : '' }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>{{ $label }}</p>
                                         </a>
                                     </li>
                                 @endforeach
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.contact-messages.index') }}" class="nav-link">
+                                    <a href="{{ route('admin.contact-messages.index') }}"
+                                        class="nav-link {{ request()->routeIs('admin.contact-messages.*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Messages</p>
                                     </a>
