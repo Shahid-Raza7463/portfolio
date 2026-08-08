@@ -39,9 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return redirect()->route('admin.dashboard');
     })->name('dashboard');
-    Route::get('/users', fn () => redirect()->route('admin.dashboard'))->name('users.index');
-    Route::get('/roles', fn () => redirect()->route('admin.dashboard'))->name('roles.index');
-    Route::get('/products', fn () => redirect()->route('admin.dashboard'))->name('products.index');
+    Route::get('/users', fn() => redirect()->route('admin.dashboard'))->name('users.index');
+    Route::get('/roles', fn() => redirect()->route('admin.dashboard'))->name('roles.index');
+    Route::get('/products', fn() => redirect()->route('admin.dashboard'))->name('products.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -51,32 +51,7 @@ require __DIR__ . '/auth.php';
 //*login routes end
 
 //* portfolio start
-// page all 
-// Route::get('/portfolio-details', function () {
-//     return view('web.pages.portfolio-details');
-// });
-
-// Route::get('/index-page', function () {
-//     return view('web.pages.index');
-// });
-
-// Route::get('/service-details', function () {
-//     return view('web.pages.service-details');
-// });
-
-// Route::get('/starter-page', function () {
-//     return view('web.pages.starter-page');
-// });
-
-
 Route::get('/', [HomeController::class, 'index']);
-// Route::get('/portfolio-details/{id}', function ($id) {
-//     if ($id == 1) {
-//         return view('web.pages.portfolio.portfolio');
-//     } else {
-//         return view('web.pages.portfolio.portfolio2');
-//     }
-// });
 
 
 //* All portfolio

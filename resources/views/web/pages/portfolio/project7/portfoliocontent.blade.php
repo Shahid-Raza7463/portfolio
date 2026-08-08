@@ -90,7 +90,7 @@
                             <li><strong>Tools & Technologies</strong>: Php, Laravel, Mysql, Ajax, Json, JavaScript,
                                 HTML, CSS, jQuery, Bootstrap,</li>
                             <li><strong>Project URL</strong>:</li>
-                                                     {{-- <li><a href="https://www.expertaff.com/" target="_blank">https://www.expertaff.com</a></li> --}}
+                            {{-- <li><a href="https://www.expertaff.com/" target="_blank">https://www.expertaff.com</a></li> --}}
                             <li><a href="https://expertaff.infinityfreeapp.com/"
                                     target="_blank">https://www.expertaff.infinityfreeapp.com</a></li>
                         </ul>

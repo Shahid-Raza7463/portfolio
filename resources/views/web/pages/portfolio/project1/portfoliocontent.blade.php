@@ -114,16 +114,6 @@
                     allowing users to sign up, log in, and log out. Additionally, users can submit their
                     location, which will enable efficient product delivery when the shopping feature is fully
                     functional.</p>
-                {{-- <ul style="line-height: 1.9; margin-top: 20px; padding-left: 20px;">
-                    <li><strong>Add Network/Program</strong>: Allows users to create new networks.</li>
-                    <li><strong>Networks</strong>: View and manage all listed networks in one place.</li>
-                    <li><strong>Offers</strong>: Lists all available offers related to the networks.</li>
-                    <li><strong>Resources</strong>: Provides resources related to affiliate marketing.</li>
-                    <li><strong>Reviews</strong>: Allows users to give reviews on networks and reply to them.
-                    </li>
-                    <li><strong>Blog</strong>: Users can create and browse blogs related to affiliate marketing.
-                    </li>
-                </ul> --}}
             </div>
         </div>
     </section>
