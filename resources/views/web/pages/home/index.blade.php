@@ -9,6 +9,6 @@
         </div>
     </div> --}}
     @include('web.pages.common.leftheader')
-    @include('web.pages.home.indexconent')
+    @include('web.pages.home.dynamiccontent')
     @include('web.pages.common.footer')
 @endsection

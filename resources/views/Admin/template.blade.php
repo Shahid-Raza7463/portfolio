@@ -121,6 +121,43 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                                <p>
+                                    Portfolio CMS
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                @foreach ([
+                                    'settings' => 'Settings',
+                                    'social-links' => 'Social Links',
+                                    'skills' => 'Skills',
+                                    'resume-sections' => 'Resume Sections',
+                                    'resume-items' => 'Resume Items',
+                                    'portfolio-categories' => 'Portfolio Categories',
+                                    'portfolio-items' => 'Portfolio Items',
+                                    'contact-infos' => 'Contact Info',
+                                    'stats' => 'Stats',
+                                    'services' => 'Services',
+                                    'testimonials' => 'Testimonials',
+                                ] as $resource => $label)
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.portfolio.index', $resource) }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ $label }}</p>
+                                        </a>
+                                    </li>
+                                @endforeach
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.contact-messages.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Messages</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </div>

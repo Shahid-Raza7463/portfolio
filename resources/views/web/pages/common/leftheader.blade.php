@@ -6,38 +6,25 @@
         {{-- <img src="{{ asset('img/my-profile-img.jpg') }}" alt="" class="img-fluid rounded-circle"> --}}
         {{-- <img src="{{ asset('img/my-profile-img (2).png') }}" alt="" class="img-fluid rounded-circle"> --}}
         {{-- <img src="{{ asset('img/my-profile-img (3).png') }}" alt="" class="img-fluid rounded-circle"> --}}
-        <img src="{{ asset('img/my-profile-img1 (1).png') }}" alt="" class="img-fluid rounded-circle">
+        <img src="{{ asset($profile->profile_image ?? 'img/my-profile-img1 (1).png') }}" alt="" class="img-fluid rounded-circle">
     </div>
 
     <a href="{{ url('/') }}" class="logo d-flex align-items-center justify-content-center">
 
         {{-- <img src="{{ asset('img/logo.png') }}" alt=""> --}}
-        <h1 class="sitename">Shahid Raza</h1>
+        <h1 class="sitename">{{ $profile->name ?? 'Shahid Raza' }}</h1>
     </a>
 
     <div class="social-links text-center">
-        <a href="https://wa.me/917488952139" class="whatsapp" target="_blank">
-            <i class="bi bi-whatsapp"></i>
-        </a>
-        {{-- <a href="https://www.facebook.com/md.shahidraza.3954546?mibextid=ZbWKwL" class="facebook" target="_blank">
-            <i class="bi bi-facebook"></i>
-        </a> --}}
-        <a href="https://www.facebook.com/share/UbuEW2ucYCpR4MBK/?mibextid=qi2Omg" class="facebook" target="_blank">
-            <i class="bi bi-facebook"></i>
-        </a>
-        {{-- <a href="https://www.instagram.com/shahil_solo_boy?utm_source=qr&igsh=bWk2dnU3MTliejdm" class="instagram"
-            target="_blank">
-            <i class="bi bi-instagram"></i>
-        </a> --}}
-        <a href="#" class="instagram" target="_blank">
-            <i class="bi bi-instagram"></i>
-        </a>
-        <a href="https://github.com/Shahid-Raza7463?tab=repositories" class="github" target="_blank">
-            <i class="bi bi-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/mdshahidraza7886" class="linkedin" target="_blank">
-            <i class="bi bi-linkedin"></i>
-        </a>
+        @forelse (($profile->socialLinks ?? collect()) as $social)
+            <a href="{{ $social->url }}" class="{{ Str::slug($social->name) }}" target="_blank">
+                <i class="{{ $social->icon_class }}"></i>
+            </a>
+        @empty
+            <a href="https://wa.me/917488952139" class="whatsapp" target="_blank"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://github.com/Shahid-Raza7463?tab=repositories" class="github" target="_blank"><i class="bi bi-github"></i></a>
+            <a href="https://www.linkedin.com/in/mdshahidraza7886" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
+        @endforelse
     </div>
     <nav id="navmenu" class="navmenu">
         <ul>

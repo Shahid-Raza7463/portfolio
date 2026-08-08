@@ -1,16 +1,27 @@
 <?php
 
 use App\Http\Controllers\Admin\BlogsController;
+use App\Http\Controllers\Admin\Portfolio\ContactMessageController;
+use App\Http\Controllers\Admin\Portfolio\PortfolioContentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Web\BlogsViewWebController;
 use App\Http\Controllers\Web\BlogsWebController;
 use App\Http\Controllers\Web\ContactUsWebController;
+use App\Http\Controllers\Web\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
 //* admin panel
-Route::prefix('admin')->middleware('throttle:only_three_time')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'verified', 'throttle:only_three_time'])->group(function () {
     Route::resource('blog', BlogsController::class);
+    Route::get('portfolio/{resource}', [PortfolioContentController::class, 'index'])->name('admin.portfolio.index');
+    Route::get('portfolio/{resource}/create', [PortfolioContentController::class, 'create'])->name('admin.portfolio.create');
+    Route::post('portfolio/{resource}', [PortfolioContentController::class, 'store'])->name('admin.portfolio.store');
+    Route::get('portfolio/{resource}/{id}', [PortfolioContentController::class, 'show'])->name('admin.portfolio.show');
+    Route::get('portfolio/{resource}/{id}/edit', [PortfolioContentController::class, 'edit'])->name('admin.portfolio.edit');
+    Route::put('portfolio/{resource}/{id}', [PortfolioContentController::class, 'update'])->name('admin.portfolio.update');
+    Route::delete('portfolio/{resource}/{id}', [PortfolioContentController::class, 'destroy'])->name('admin.portfolio.destroy');
+    Route::resource('contact-messages', ContactMessageController::class)->only(['index', 'show', 'destroy'])->names('admin.contact-messages');
 });
 
 // Web
@@ -28,6 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return redirect()->route('admin.dashboard');
     })->name('dashboard');
+    Route::get('/users', fn () => redirect()->route('admin.dashboard'))->name('users.index');
+    Route::get('/roles', fn () => redirect()->route('admin.dashboard'))->name('roles.index');
+    Route::get('/products', fn () => redirect()->route('admin.dashboard'))->name('products.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -55,9 +69,7 @@ require __DIR__ . '/auth.php';
 // });
 
 
-Route::get('/',  function () {
-    return view('web.pages.home.index');
-});
+Route::get('/', [HomeController::class, 'index']);
 // Route::get('/portfolio-details/{id}', function ($id) {
 //     if ($id == 1) {
 //         return view('web.pages.portfolio.portfolio');
@@ -118,7 +130,7 @@ Route::get('/android-app/1', function () {
 
 //* All portfolio end hare 
 
-Route::resource('/contact', ContactUsWebController::class);
+Route::resource('/contact', ContactUsWebController::class)->only(['store']);
 
 // All portfolio end 
 

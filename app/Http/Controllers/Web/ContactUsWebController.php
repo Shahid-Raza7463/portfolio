@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Web\ContactUs;
-use App\Models\Web\ContacUs;
-use Dotenv\Validator;
 use Illuminate\Http\Request;
 
 class ContactUsWebController extends Controller
@@ -22,8 +20,7 @@ class ContactUsWebController extends Controller
             'message' =>  "required"
         ]);
 
-        $contact  = $request->all();
-        ContactUs::create($contact);
+        ContactUs::create($validated);
 
         // $output = 'Thanks, Shahid Raza will contact you soon.';
         // return back()->with('success', $output);
