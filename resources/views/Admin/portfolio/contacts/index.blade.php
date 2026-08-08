@@ -25,15 +25,32 @@
                                 <td>{{ $message->name }}</td>
                                 <td>{{ $message->email }}</td>
                                 <td>{{ $message->subject }}</td>
-                                <td class="d-flex">
-                                    <a href="{{ route('admin.contact-messages.show', $message->id) }}"
-                                        class="btn btn-sm btn-success mr-2">View</a>
+                                <td>
+                                    <div class="d-flex"
+                                        style="
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;">
+                                    <div class="card-tools  mx-2">
+                                        <a href="{{ route('admin.contact-messages.show', $message->id) }}"
+                                            class="btn btn-sm"
+                                            style="height: 21px;
+                                                    width: 3rem; font-size: 8px;    background-color: #5d9531cc; color:white">
+                                            <i class="fa fa-eye"></i> View
+                                        </a>
+                                    </div>
                                     <form action="{{ route('admin.contact-messages.destroy', $message->id) }}"
-                                        method="post" onsubmit="return confirm('Delete this message?')">
+                                        method="post" onsubmit="return confirm('Delete this message?')"
+                                        style="margin:0px;">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                        <button class="btn btn-sm btn-danger mx-2"
+                                            style="height: 21px;
+                                                    width: 3rem; font-size: 8px;">
+                                            <i class="fa fa-trash"></i> Delete
+                                        </button>
                                     </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
