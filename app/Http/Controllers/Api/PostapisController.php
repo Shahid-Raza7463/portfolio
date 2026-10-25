@@ -29,7 +29,7 @@ class PostapisController extends Controller
     //     ], 200);
     // }
 
-        public function index()
+    public function index()
     {
         // Retrieve all posts
         $posts = Postapi::all();
